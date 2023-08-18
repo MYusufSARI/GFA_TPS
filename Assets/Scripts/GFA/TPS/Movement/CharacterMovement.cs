@@ -15,6 +15,9 @@ namespace GFA.TPS.Movement
 
         public Vector3 ExternalForces { get; set; }
 
+        [SerializeField]
+        private float _movementSpeed;
+
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -25,9 +28,9 @@ namespace GFA.TPS.Movement
         {
             var movement = new Vector3(MovementInput.x, 0, MovementInput.y);
 
-            _characterController.SimpleMove(movement + ExternalForces);
+            _characterController.SimpleMove(movement *_movementSpeed +  ExternalForces);
 
             ExternalForces = Vector3.Lerp(ExternalForces, Vector3.zero, 8 * Time.deltaTime);
-        }
+        } 
     }
 }
