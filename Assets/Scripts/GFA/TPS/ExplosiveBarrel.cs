@@ -38,6 +38,8 @@ namespace GFA.TPS
 
             foreach (var hit in hits)
             {
+
+
                 var distance = Vector3.Distance(transform.position, hit.transform.position);
 
                 var rate = distance / explosionRadius;
