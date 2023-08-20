@@ -480,7 +480,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: -0.22863893, y: -0.07120393, z: 0.016770678, w: -0.970759}
-  m_LocalPosition: {x: -2.5199687, y: 6.834592, z: -10.457156}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1788946640}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
@@ -1014,7 +1014,7 @@ Transform:
   m_GameObject: {fileID: 1942723686}
   serializedVersion: 2
   m_LocalRotation: {x: -0.22863893, y: -0.07120393, z: 0.016770678, w: -0.970759}
-  m_LocalPosition: {x: -2.5199687, y: 6.834592, z: -10.457156}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
