@@ -19,6 +19,8 @@ namespace GFA.TPS.Movement
 
         public float Rotation { get; set; }
 
+        public Vector3 Velocity => _characterController.velocity;
+
 
         private void Awake()
         {
@@ -30,7 +32,6 @@ namespace GFA.TPS.Movement
             var movement = new Vector3(MovementInput.x, 0, MovementInput.y);
 
             transform.eulerAngles = new Vector3(0, Rotation);
-
             _characterController.SimpleMove(movement * _movementSpeed + ExternalForces);
 
             ExternalForces = Vector3.Lerp(ExternalForces, Vector3.zero, 8 * Time.deltaTime);
