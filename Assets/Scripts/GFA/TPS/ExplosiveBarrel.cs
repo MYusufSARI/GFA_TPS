@@ -58,7 +58,7 @@ namespace GFA.TPS
 
             }
 
-            
+
             Destroy(gameObject);
         }
     }
