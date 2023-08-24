@@ -24,7 +24,7 @@ namespace GFA.TPS.Movement.Tests
         }
         
         private void OnEnable()
-        {
+        { 
             _gameInput.Enable();
 
             _gameInput.Player.Dodge.performed += OnDodgeButtonPressed;
@@ -43,7 +43,7 @@ namespace GFA.TPS.Movement.Tests
         }
 
         private void Update()
-        {
+        { 
             var input = _gameInput.Player.Movement.ReadValue<Vector2>();
             _characterMovement.MovementInput = input;
 
