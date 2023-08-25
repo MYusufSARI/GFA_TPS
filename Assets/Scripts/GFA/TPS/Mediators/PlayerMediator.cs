@@ -11,7 +11,6 @@ namespace GFA.TPS.Mediators
     public class PlayerMediator : MonoBehaviour
     {
         private CharacterMovement _characterMovement;
-        
 
         private GameInput _gameInput;
 
@@ -24,7 +23,7 @@ namespace GFA.TPS.Mediators
         private void Awake()
         {
             _characterMovement = GetComponent<CharacterMovement>();
-            
+
             _gameInput = new GameInput();
 
             _camera = Camera.main;
@@ -50,8 +49,19 @@ namespace GFA.TPS.Mediators
 
         private void Update()
         {
+            var movementInput = _gameInput.Player.Movement.ReadValue<Vector2>();
+
+            _characterMovement.MovementInput = movementInput;
+
+            var ray = _camera.ScreenPointToRay(_gameInput.Player.PointerPosition.ReadValue<Vector2>());
+
+            if (_plane.Raycast(ray, out float enter))
+            {
+                var worldPosition = ray.GetPoint(enter);
+            }
 
         }
     }
-
 }
+
+
