@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultSpawnData
   m_EditorClassIdentifier: 
   _entries:
-  - _duration: 300
+  - _duration: 35
     _prefabs:
     - {fileID: 7029667660122453906, guid: 2e5bd8cfada2c407ebb88a62a5eaf966, type: 3}
     _spawnCount: 1000
