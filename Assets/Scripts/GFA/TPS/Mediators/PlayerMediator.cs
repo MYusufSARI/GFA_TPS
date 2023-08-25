@@ -37,7 +37,7 @@ namespace GFA.TPS.Mediators
 
         private void OnDisable()
         {
-            _gameInput.Disable();
+            _gameInput.Disable(); 
             _gameInput.Player.Dodge.performed -= OnDodgeRequested;
         }
 
@@ -55,9 +55,28 @@ namespace GFA.TPS.Mediators
 
             var ray = _camera.ScreenPointToRay(_gameInput.Player.PointerPosition.ReadValue<Vector2>());
 
-            if (_plane.Raycast(ray, out float enter))
+            var gamePadLookDir = _gameInput.Player.Look.ReadValue<Vector2>();
+
+            if (gamePadLookDir.magnitude>0.1f)
             {
-                var worldPosition = ray.GetPoint(enter);
+                var angle = -MathF.Atan2(gamePadLookDir.y, gamePadLookDir.x) * Mathf.Rad2Deg + 90;
+
+                _characterMovement.Rotation = angle;
+            }
+
+            else
+            {
+                if (_plane.Raycast(ray, out float enter))
+                {
+                    var worldPosition = ray.GetPoint(enter);
+
+                    var dir = (worldPosition - transform.position).normalized;
+
+                    //Quaternion.LookRotation(dir). eulerAngles.y;
+                    var angle = -Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg + 90;
+
+                    _characterMovement.Rotation = angle;
+                }
             }
 
         }
