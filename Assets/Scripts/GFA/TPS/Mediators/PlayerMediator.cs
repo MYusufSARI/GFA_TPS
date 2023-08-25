@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using GFA.TPS;
 using GFA.TPS.Input;
 using GFA.TPS.Movement;
 using UnityEngine;
@@ -9,34 +8,39 @@ using UnityEngine.InputSystem;
 
 namespace GFA.TPS.Mediators
 {
-
     public class PlayerMediator : MonoBehaviour
     {
         private CharacterMovement _characterMovement;
+        
 
-        private GameInput _gameinput;
+        private GameInput _gameInput;
 
-        [SerializeField]
-        private float _dodgePower;
+        [SerializeField] private float _dodgePower;
+
+        private Plane _plane = new Plane(Vector3.up, Vector3.zero);
+
+        private Camera _camera;
 
         private void Awake()
         {
             _characterMovement = GetComponent<CharacterMovement>();
+            
+            _gameInput = new GameInput();
 
-            _gameinput = new GameInput();
+            _camera = Camera.main;
         }
 
         private void OnEnable()
         {
-            _gameinput.Enable();
-            _gameinput.Player.Dodge.performed += OnDodgeRequested;
+            _gameInput.Enable();
+            _gameInput.Player.Dodge.performed += OnDodgeRequested;
         }
 
         private void OnDisable()
         {
-            _gameinput.Disable();
+            _gameInput.Disable();
+            _gameInput.Player.Dodge.performed -= OnDodgeRequested;
         }
-
 
         private void OnDodgeRequested(InputAction.CallbackContext obj)
         {

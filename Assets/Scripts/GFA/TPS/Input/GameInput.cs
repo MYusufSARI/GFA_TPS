@@ -114,7 +114,7 @@ namespace GFA.TPS.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""ArrowKeys"",
+                    ""name"": ""Arrow"",
                     ""id"": ""63c4e156-3856-4df5-bb1e-99339c4aeb5a"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GFA.TPS.Input;
-using GFA.TPS.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,9 +21,9 @@ namespace GFA.TPS.Movement.Tests
         {
             _gameInput = new GameInput();
         }
-        
+
         private void OnEnable()
-        { 
+        {
             _gameInput.Enable();
 
             _gameInput.Player.Dodge.performed += OnDodgeButtonPressed;
@@ -43,13 +42,10 @@ namespace GFA.TPS.Movement.Tests
         }
 
         private void Update()
-        { 
+        {
             var input = _gameInput.Player.Movement.ReadValue<Vector2>();
             _characterMovement.MovementInput = input;
-
             _characterMovement.Rotation += Time.deltaTime * 10;
         }
     }
-
-    
 }
