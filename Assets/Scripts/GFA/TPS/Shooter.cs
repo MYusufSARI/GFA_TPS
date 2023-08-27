@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace GFA.TPS
 {
@@ -15,6 +17,33 @@ namespace GFA.TPS
 
         public bool CanShoot { get; }
 
+        private IObjectPool<GameObject> _projectilePool;
+
+        private void Awake()
+        {
+            _projectilePool = new ObjectPool<GameObject>(CreatePoolProjectile , OnGetPoolProjectile , OnReleasePoolObject , OnDestroyFromPool , true , 40);
+        }
+
+        private void OnDestroyFromPool(GameObject @object)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnReleasePoolObject(GameObject @object)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnGetPoolProjectile(GameObject @object)
+        {
+            throw new NotImplementedException();
+        }
+
+        private GameObject CreatePoolProjectile()
+        {
+            
+        }
+
         public void Shoot()
         {
             if (!CanShoot)
@@ -22,5 +51,7 @@ namespace GFA.TPS
                 return;
             }
         }
+
+
     }
 }
