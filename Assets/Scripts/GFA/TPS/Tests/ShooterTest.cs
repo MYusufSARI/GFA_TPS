@@ -20,7 +20,7 @@ namespace GFA.TPS.Movement.Tests
         {
             while (true)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
 
                 Instantiate(_projectilePrefab, transform.position, transform.rotation);
             }
