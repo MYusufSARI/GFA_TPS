@@ -47,21 +47,6 @@ namespace GFA.TPS
             }
 
             Destroy(gameObject);
-            Destroy(gameObject);
-
-            Destroy(gameObject);
-
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject);
-
-
         }
     }
 }
