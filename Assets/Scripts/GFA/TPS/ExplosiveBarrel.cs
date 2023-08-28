@@ -16,8 +16,10 @@ namespace GFA.TPS
         [SerializeField]
         private float _explosionRadius = 5;
 
+        [SerializeField]
         private float _explosionDamage = 5;
 
+        [SerializeField]
         private float _explosionForce = 50;
 
         [SerializeField]
@@ -44,6 +46,16 @@ namespace GFA.TPS
                 var rate = distance / _explosionRadius;
 
                 var falloff = _explosionFalloff.Evaluate(rate);
+
+                if (hit.transform.TryGetComponent<IDamagable>(out var damagable))
+                {
+                    damagable.ApplyDamage(_explosionDamage * falloff);
+                }
+
+                if (hit.attachedRigidbody)
+                {
+                    hit.attachedRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1, ForceMode.Impulse);
+                }
             }
 
             Destroy(gameObject);

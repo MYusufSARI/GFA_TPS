@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 122284025}
   - component: {fileID: 122284024}
   - component: {fileID: 122284023}
+  - component: {fileID: 122284028}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -256,6 +257,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122284028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122284022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b488ba0799fcb42088763183aa0b0aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 5
+  _explosionRadius: 15
+  _explosionDamage: 5
+  _explosionForce: 50
+  _explosionFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.0018182427
+      outSlope: -0.0018182427
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4288798
+      value: 0.9992202
+      inSlope: -0.022797039
+      outSlope: -0.022797039
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2155109
+      outWeight: 0.12673318
+    - serializedVersion: 3
+      time: 1
+      value: 0.000014841557
+      inSlope: -0.08153091
+      outSlope: -0.08153091
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10246339
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +722,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 5
   _explosionRadius: 5
+  _explosionDamage: 5
+  _explosionForce: 50
   _explosionFalloff:
     serializedVersion: 2
     m_Curve: []
@@ -1009,6 +1061,7 @@ GameObject:
   - component: {fileID: 1111537402}
   - component: {fileID: 1111537401}
   - component: {fileID: 1111537400}
+  - component: {fileID: 1111537405}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -1129,6 +1182,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1111537405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111537399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b488ba0799fcb42088763183aa0b0aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 5
+  _explosionRadius: 15
+  _explosionDamage: 5
+  _explosionForce: 50
+  _explosionFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.0018182427
+      outSlope: -0.0018182427
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4288798
+      value: 0.9992202
+      inSlope: -0.022797039
+      outSlope: -0.022797039
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2155109
+      outWeight: 0.12673318
+    - serializedVersion: 3
+      time: 1
+      value: 0.000014841557
+      inSlope: -0.08153091
+      outSlope: -0.08153091
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10246339
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,10 +1472,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 5
-  _explosionRadius: 5
+  _explosionRadius: 15
+  _explosionDamage: 5
+  _explosionForce: 50
   _explosionFalloff:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.0018182427
+      outSlope: -0.0018182427
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4288798
+      value: 0.9992202
+      inSlope: -0.022797039
+      outSlope: -0.022797039
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2155109
+      outWeight: 0.12673318
+    - serializedVersion: 3
+      time: 1
+      value: 0.000014841557
+      inSlope: -0.08153091
+      outSlope: -0.08153091
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10246339
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
