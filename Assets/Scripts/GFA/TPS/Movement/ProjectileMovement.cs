@@ -16,6 +16,8 @@ namespace GFA.TPS.Movement
             set => _speed = value;
         }
 
+        [SerializeField]
+        private Vector3 _movementPlane = Vector3.one;
 
         [SerializeField]
         private bool _shouldDisableOnCollision;
@@ -52,6 +54,12 @@ namespace GFA.TPS.Movement
         private void Update()
         {
             var direction = transform.forward;
+
+            direction.x *= _movementPlane.x;
+            direction.y *= _movementPlane.y;
+            direction.z *= _movementPlane.z;
+
+            direction.Normalize();
 
             var distance = _speed * Time.deltaTime;
 

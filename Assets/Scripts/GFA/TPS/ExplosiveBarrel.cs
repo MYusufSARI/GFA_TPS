@@ -39,30 +39,14 @@ namespace GFA.TPS
 
             foreach (var hit in hits)
             {
-                if (hit.transform == transform) continue;
                 var distance = Vector3.Distance(transform.position, hit.transform.position);
+
                 var rate = distance / _explosionRadius;
+
                 var falloff = _explosionFalloff.Evaluate(rate);
-
-                if (hit.transform.TryGetComponent<IDamagable>(out var damageable))
-                {
-                    damageable.ApplyDamage(_explosionDamage * falloff);
-                }
-
-                if (hit.transform.TryGetComponent<CharacterMovement>(out var movement))
-                {
-                    movement.ExternalForces += (hit.transform.position - transform.position).normalized * _explosionForce * falloff;
-                }
-
-                if (hit.attachedRigidbody)
-                {
-                    hit.attachedRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1, ForceMode.Impulse);
-                }
             }
+
             Destroy(gameObject);
         }
-
-
-
     }
 }
