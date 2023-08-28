@@ -25,13 +25,17 @@ namespace GFA.TPS
         [SerializeField]
         private AnimationCurve _explosionFalloff;
 
+        private bool _isDead;
+
         public void ApplyDamage(float damage, GameObject causer = null)
         {
+            if (_isDead) return;
 
             _health -= damage;
             if (_health <= 0)
             {
                 Explode();
+                _isDead = true;
             }
         }
 
@@ -41,10 +45,10 @@ namespace GFA.TPS
 
             foreach (var hit in hits)
             {
+                if (hit.transform == transform) continue;
+
                 var distance = Vector3.Distance(transform.position, hit.transform.position);
-
                 var rate = distance / _explosionRadius;
-
                 var falloff = _explosionFalloff.Evaluate(rate);
 
                 if (hit.transform.TryGetComponent<IDamagable>(out var damagable))
