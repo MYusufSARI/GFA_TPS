@@ -12,16 +12,23 @@ namespace GFA.TPS
         [SerializeField]
         private float _fireRate = 0.5f;
 
-        [SerializeField]
         private float _lastShootTime;
 
-        public bool CanShoot { get; }
+        [SerializeField]
+        private GameObject _projectilePrefab;
+
+        [SerializeField]
+        private Transform _shootTransform;
+
+        public bool CanShoot => Time.time > _lastShootTime + _fireRate;
+
+
 
         private IObjectPool<GameObject> _projectilePool;
 
         private void Awake()
         {
-            _projectilePool = new ObjectPool<GameObject>(CreatePoolProjectile , OnGetPoolProjectile , OnReleasePoolObject , OnDestroyFromPool , true , 40);
+            //      _projectilePool = new ObjectPool<GameObject>(CreatePoolProjectile , OnGetPoolProjectile , OnReleasePoolObject , OnDestroyFromPool , true , 40);
         }
 
         private void OnDestroyFromPool(GameObject @object)
@@ -38,18 +45,22 @@ namespace GFA.TPS
         {
             throw new NotImplementedException();
         }
-
+        /*
         private GameObject CreatePoolProjectile()
         {
             
         }
-
+        */
         public void Shoot()
         {
             if (!CanShoot)
             {
                 return;
             }
+
+            var inst = Instantiate(_projectilePrefab, _shootTransform.position, _shootTransform.rotation);
+
+            _lastShootTime = Time.time;
         }
 
 

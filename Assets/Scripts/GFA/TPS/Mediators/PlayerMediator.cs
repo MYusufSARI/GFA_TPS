@@ -14,6 +14,8 @@ namespace GFA.TPS.Mediators
 
         private GameInput _gameInput;
 
+        private Shooter _shooter;
+
         [SerializeField] private float _dodgePower;
 
         private Plane _plane = new Plane(Vector3.up, Vector3.zero);
@@ -26,6 +28,8 @@ namespace GFA.TPS.Mediators
 
             _gameInput = new GameInput();
 
+            _shooter = GetComponent<Shooter>();
+
             _camera = Camera.main;
         }
 
@@ -33,12 +37,19 @@ namespace GFA.TPS.Mediators
         {
             _gameInput.Enable();
             _gameInput.Player.Dodge.performed += OnDodgeRequested;
+            _gameInput.Player.Shoot.performed += OnShootRequested;
+        }
+
+        private void OnShootRequested(InputAction.CallbackContext obj)
+        {
+            _shooter.Shoot();
         }
 
         private void OnDisable()
         {
             _gameInput.Disable(); 
             _gameInput.Player.Dodge.performed -= OnDodgeRequested;
+            _gameInput.Player.Shoot.performed -= OnShootRequested;
         }
 
         private void OnDodgeRequested(InputAction.CallbackContext obj)
@@ -78,6 +89,8 @@ namespace GFA.TPS.Mediators
                     _characterMovement.Rotation = angle;
                 }
             }
+
+           // _gameInput.Player.Shoot.IsPressed();
 
         }
     }
