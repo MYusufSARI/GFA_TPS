@@ -14,13 +14,15 @@ namespace GFA.TPS
 
         private float _lastShootTime;
 
+        public bool CanShoot => Time.time > _lastShootTime + _fireRate;
+
         [SerializeField]
         private GameObject _projectilePrefab;
 
         [SerializeField]
         private Transform _shootTransform;
 
-        public bool CanShoot => Time.time > _lastShootTime + _fireRate;
+       
 
 
 

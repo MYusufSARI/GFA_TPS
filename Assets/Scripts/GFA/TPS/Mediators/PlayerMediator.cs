@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GFA.TPS.Input;
 using GFA.TPS.Movement;
+using GFA.TPS;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,20 +38,14 @@ namespace GFA.TPS.Mediators
         {
             _gameInput.Enable();
             _gameInput.Player.Dodge.performed += OnDodgeRequested;
-            _gameInput.Player.Shoot.performed += OnShootRequested;
-        }
-
-        private void OnShootRequested(InputAction.CallbackContext obj)
-        {
-            _shooter.Shoot();
         }
 
         private void OnDisable()
         {
-            _gameInput.Disable(); 
+            _gameInput.Disable();
             _gameInput.Player.Dodge.performed -= OnDodgeRequested;
-            _gameInput.Player.Shoot.performed -= OnShootRequested;
         }
+
 
         private void OnDodgeRequested(InputAction.CallbackContext obj)
         {
@@ -60,6 +55,17 @@ namespace GFA.TPS.Mediators
 
         private void Update()
         {
+            HandleMovement();
+
+            if (_gameInput.Player.Shoot.IsPressed())
+            {
+                _shooter.Shoot();
+            }
+        }
+
+
+        private void HandleMovement()
+        {
             var movementInput = _gameInput.Player.Movement.ReadValue<Vector2>();
 
             _characterMovement.MovementInput = movementInput;
@@ -68,7 +74,8 @@ namespace GFA.TPS.Mediators
 
             var gamePadLookDir = _gameInput.Player.Look.ReadValue<Vector2>();
 
-            if (gamePadLookDir.magnitude>0.1f)
+
+            if (gamePadLookDir.magnitude > 0.1f)
             {
                 var angle = -MathF.Atan2(gamePadLookDir.y, gamePadLookDir.x) * Mathf.Rad2Deg + 90;
 
@@ -89,9 +96,6 @@ namespace GFA.TPS.Mediators
                     _characterMovement.Rotation = angle;
                 }
             }
-
-           // _gameInput.Player.Shoot.IsPressed();
-
         }
     }
 }

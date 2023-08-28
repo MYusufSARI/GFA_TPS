@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GFA.TPS;
+using GFA.TPS.Movement;
 using UnityEngine;
 
 namespace GFA.TPS
@@ -13,14 +14,14 @@ namespace GFA.TPS
         private float _health = 5;
 
         [SerializeField]
-        private float explosionRadius = 5;
+        private float _explosionRadius = 5;
 
         private float _explosionDamage = 5;
 
         private float _explosionForce = 50;
 
         [SerializeField]
-        private AnimationCurve _explosionFallOff;
+        private AnimationCurve _explosionFalloff;
 
         public void ApplyDamage(float damage, GameObject causer = null)
         {
@@ -32,34 +33,36 @@ namespace GFA.TPS
             }
         }
 
-        public void Explode()
+        private void Explode()
         {
-            var hits = Physics.OverlapSphere(transform.position, explosionRadius);
+            var hits = Physics.OverlapSphere(transform.position, _explosionRadius);
 
             foreach (var hit in hits)
             {
-
-
+                if (hit.transform == transform) continue;
                 var distance = Vector3.Distance(transform.position, hit.transform.position);
+                var rate = distance / _explosionRadius;
+                var falloff = _explosionFalloff.Evaluate(rate);
 
-                var rate = distance / explosionRadius;
-
-                var fallOff = _explosionFallOff.Evaluate(rate);
-
-                if (hit.transform.TryGetComponent<IDamagable>(out var damagable))
+                if (hit.transform.TryGetComponent<IDamagable>(out var damageable))
                 {
-                    damagable.ApplyDamage(_explosionDamage + fallOff);
+                    damageable.ApplyDamage(_explosionDamage * falloff);
+                }
+
+                if (hit.transform.TryGetComponent<CharacterMovement>(out var movement))
+                {
+                    movement.ExternalForces += (hit.transform.position - transform.position).normalized * _explosionForce * falloff;
                 }
 
                 if (hit.attachedRigidbody)
                 {
-                    hit.attachedRigidbody.AddExplosionForce(_explosionForce, transform.position, explosionRadius, 1, ForceMode.Impulse);
+                    hit.attachedRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1, ForceMode.Impulse);
                 }
-
             }
-
-
             Destroy(gameObject);
         }
+
+
+
     }
 }

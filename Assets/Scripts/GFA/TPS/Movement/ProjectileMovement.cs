@@ -43,6 +43,8 @@ namespace GFA.TPS.Movement
             set => _shouldBounce = value;
         }
 
+        public event Action<RaycastHit> Impacted;
+
         [SerializeField]
         private float _pushPower;
 
@@ -74,6 +76,8 @@ namespace GFA.TPS.Movement
                 }
 
                 targetPosition = hit.point;
+
+                Impacted?.Invoke(hit);
 
                 if (ShouldBounce)
                 {
