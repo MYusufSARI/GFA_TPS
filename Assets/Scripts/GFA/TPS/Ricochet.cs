@@ -54,7 +54,7 @@ namespace GFA.TPS
 
             foreach (var hit in hits)
             {
-                if (hit.transform == raycastHit.transform) continue; 
+                if (hit.transform == raycastHit.transform) continue;
 
                 if (hit.transform.TryGetComponent<IDamagable>(out var _))
                 {

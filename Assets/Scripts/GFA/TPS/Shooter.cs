@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 namespace GFA.TPS
 {
@@ -11,6 +12,9 @@ namespace GFA.TPS
     {
         [SerializeField]
         private float _fireRate = 0.5f;
+
+        [SerializeField]
+        private float _accuracy = 1f;
 
         private float _lastShootTime;
 
@@ -21,10 +25,6 @@ namespace GFA.TPS
 
         [SerializeField]
         private Transform _shootTransform;
-
-       
-
-
 
         private IObjectPool<GameObject> _projectilePool;
 
@@ -61,6 +61,10 @@ namespace GFA.TPS
             }
 
             var inst = Instantiate(_projectilePrefab, _shootTransform.position, _shootTransform.rotation);
+            var rand = Random.value; 
+            var maxAngle = 60 - 60 * _accuracy;
+                                                                         // var minAngle = 60 - 60 * _accuracy;
+            var randomAngle = Mathf.Lerp(-maxAngle, maxAngle, rand);
 
             _lastShootTime = Time.time;
         }
