@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using GFA.TPS;
 using GFA.TPS.Movement;
 using UnityEngine;
+using Cinemachine;
 
 namespace GFA.TPS
 {
+    [RequireComponent(typeof(CinemachineImpulseSource))]
 
     public class ExplosiveBarrel : MonoBehaviour, IDamagable
     {
@@ -23,9 +25,23 @@ namespace GFA.TPS
         private float _explosionForce = 50;
 
         [SerializeField]
+        private float _delayBeforeExplosion;
+
+        [SerializeField]
         private AnimationCurve _explosionFalloff;
 
+        [SerializeField]
+        private CinemachineImpulseSource _impulseSource;
+
+        [SerializeField]
+        private float _cameraShakePower;
+
         private bool _isDead;
+
+        private void Awake()
+        {
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
+        }
 
         public void ApplyDamage(float damage, GameObject causer = null)
         {
@@ -34,9 +50,17 @@ namespace GFA.TPS
             _health -= damage;
             if (_health <= 0)
             {
-                Explode();
+                StartCoroutine(ExplodeDelayed());
+
                 _isDead = true;
             }
+        }
+
+        private IEnumerator ExplodeDelayed()
+        {
+            yield return new WaitForSeconds(_delayBeforeExplosion);
+            Explode();
+
         }
 
         private void Explode()
@@ -56,13 +80,28 @@ namespace GFA.TPS
                     damagable.ApplyDamage(_explosionDamage * falloff);
                 }
 
+                if (hit.transform.TryGetComponent<CharacterMovement>(out var movement))
+                {
+                    movement.ExternalForces += (hit.transform.position - transform.position).normalized * _explosionForce * falloff * 0.2f;
+                }
+
                 if (hit.attachedRigidbody)
                 {
                     hit.attachedRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1, ForceMode.Impulse);
                 }
             }
 
+            _impulseSource.GenerateImpulseAt(transform.position, new Vector3(1,1,0) * _cameraShakePower);
+
             Destroy(gameObject);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (_isDead)
+            {
+                Gizmos.DrawWireSphere(transform.position, _explosionRadius);
+            }
         }
     }
 }
