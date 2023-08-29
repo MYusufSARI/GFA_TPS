@@ -63,8 +63,11 @@ namespace GFA.TPS
             var inst = Instantiate(_projectilePrefab, _shootTransform.position, _shootTransform.rotation);
             var rand = Random.value; 
             var maxAngle = 60 - 60 * _accuracy;
-                                                                         // var minAngle = 60 - 60 * _accuracy;
-            var randomAngle = Mathf.Lerp(-maxAngle, maxAngle, rand);
+            //var minAngle = 60 - 60 * _accuracy;
+            var randomAngle = Mathf.Lerp(-maxAngle,maxAngle , rand);
+
+            var forward = inst.transform.forward;
+            forward =  Quaternion.Euler(0, randomAngle, 0) * forward;
 
             _lastShootTime = Time.time;
         }
