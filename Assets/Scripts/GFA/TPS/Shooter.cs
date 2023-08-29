@@ -69,6 +69,8 @@ namespace GFA.TPS
             var forward = inst.transform.forward;
             forward =  Quaternion.Euler(0, randomAngle, 0) * forward;
 
+            inst.transform.forward = forward;
+
             _lastShootTime = Time.time;
         }
 

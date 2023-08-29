@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ricochetCount: 5
   _removeOnComplete: 0
-  _radius: 5
+  _radius: 2.5
 --- !u!1 &8632996359841933399
 GameObject:
   m_ObjectHideFlags: 0
