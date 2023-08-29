@@ -83,7 +83,7 @@ namespace GFA.TPS.Movement
                     enabled = false;
                 }
 
-                targetPosition = hit.point;
+                targetPosition = hit.point + transform.forward * 0.01f ;
 
 
                 if (ShouldBounce)
