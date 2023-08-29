@@ -367,7 +367,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!54 &296893583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1100,7 +1100,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!54 &827082738
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1771,7 +1771,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!114 &1600522874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1951,7 +1951,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!54 &1607475025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2191,7 +2191,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!54 &1701412528
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2431,7 +2431,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!54 &1952451056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2671,7 +2671,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _impulseSource: {fileID: 0}
-  _cameraShakePower: 5
+  _cameraShakePower: 1.5
 --- !u!54 &2043181411
 Rigidbody:
   m_ObjectHideFlags: 0
