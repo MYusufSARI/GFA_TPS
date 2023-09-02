@@ -19,6 +19,9 @@ namespace GFA.TPS
         [SerializeField]
         private float _recoil;
 
+        [SerializeField]
+        private float _recoilFade;
+
         private float _recoilValue = 0f;
 
         private float _lastShootTime;
@@ -80,6 +83,10 @@ namespace GFA.TPS
             _recoilValue += _recoil;
         }
 
+        private void Update()
+        {
+            _recoilValue = Mathf.MoveTowards(_recoilValue, 0, _recoilFade * Time.deltaTime);
+        }
 
     }
 }
