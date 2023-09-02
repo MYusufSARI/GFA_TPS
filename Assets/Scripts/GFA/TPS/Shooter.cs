@@ -16,6 +16,11 @@ namespace GFA.TPS
         [SerializeField, Range(0, 1f)]
         private float _accuracy = 1f;
 
+        [SerializeField]
+        private float _recoil;
+
+        private float _recoilValue = 0f;
+
         private float _lastShootTime;
 
         public bool CanShoot => Time.time > _lastShootTime + _fireRate;
@@ -62,7 +67,7 @@ namespace GFA.TPS
 
             var inst = Instantiate(_projectilePrefab, _shootTransform.position, _shootTransform.rotation);
             var rand = Random.value;
-            var maxAngle = 30 - 30 * _accuracy;
+            var maxAngle = 30 - 30 * Mathf.Max(_accuracy - _recoilValue - 0);
             //var minAngle = 60 - 60 * _accuracy;
             var randomAngle = Mathf.Lerp(-maxAngle, maxAngle, rand);
 
@@ -72,6 +77,7 @@ namespace GFA.TPS
             inst.transform.forward = forward;
 
             _lastShootTime = Time.time;
+            _recoilValue += _recoil;
         }
 
 
