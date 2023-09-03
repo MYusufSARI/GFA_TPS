@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012b55c50e94b4c0baebf73a12c3faef, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  _baseDamage: 0.8
   _fireRate: 0.35
   _accuracy: 0.8
   _recoil: 0.02
