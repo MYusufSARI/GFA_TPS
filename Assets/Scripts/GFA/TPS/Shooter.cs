@@ -28,6 +28,9 @@ namespace GFA.TPS
 
         private WeaponGraphics _activeWeaponGraphics;
 
+        [SerializeField]
+        private Transform _weaponContainer;
+
         private void Start()
         {
             if (_weapon)
@@ -57,7 +60,8 @@ namespace GFA.TPS
                 return;
             }
 
-            var instance = Instantiate(_weapon.WeaponGraphics, transform);
+            var instance = Instantiate(_weapon.WeaponGraphics, _weaponContainer);
+            instance.transform.localPosition = Vector3.zero;
             _activeWeaponGraphics = instance;
         }
 

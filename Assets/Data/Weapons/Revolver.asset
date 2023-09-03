@@ -17,3 +17,5 @@ MonoBehaviour:
   _recoil: 0.05
   _recoilFade: 0.1
   _projectilePrefab: {fileID: 0}
+  _weaponGraphics: {fileID: 599887621999530285, guid: e5c868896bee74f0cb99d06df37373ef,
+    type: 3}
