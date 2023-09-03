@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,5 +12,12 @@ namespace GFA.TPS.WeaponSystem
         private Transform _shootTransform;
 
         public Transform ShootTransform => _shootTransform;
+
+        public event Action Shoot;
+
+        public void OnShoot()
+        {
+            Shoot?.Invoke();
+        }
     }
 }
