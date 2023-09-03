@@ -23,9 +23,6 @@ namespace GFA.TPS
         [SerializeField]
         private GameObject _defaulProjectilePrefab;
 
-        [SerializeField]
-        private Transform _shootTransform;
-
         private WeaponGraphics _activeWeaponGraphics;
 
         [SerializeField]
@@ -121,7 +118,7 @@ namespace GFA.TPS
                 projectileToInstantiate = _weapon.ProjectilePrefab;
             }
 
-            var inst = Instantiate(projectileToInstantiate, _shootTransform.position, _shootTransform.rotation);
+            var inst = Instantiate(projectileToInstantiate, _activeWeaponGraphics.ShootTransform.position, _activeWeaponGraphics.ShootTransform.rotation);
             var rand = Random.value;
             var maxAngle = 30 - 30 * Mathf.Max(_weapon.Accuracy - _recoilValue - 0);
             //var minAngle = 60 - 60 * _accuracy;
