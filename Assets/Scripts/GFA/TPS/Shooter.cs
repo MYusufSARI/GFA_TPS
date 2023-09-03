@@ -26,6 +26,51 @@ namespace GFA.TPS
         [SerializeField]
         private Transform _shootTransform;
 
+        private WeaponGraphics _activeWeaponGraphics;
+
+        private void Start()
+        {
+            if (_weapon)
+            {
+                CreateGraphics();
+            }
+        }
+
+        public void EquipWeapon(Weapon weapon)
+        {
+            if (_activeWeaponGraphics)
+            {
+                ClearGraphics();
+            }
+            _weapon = weapon;
+
+            if (!_weapon)
+            {
+                CreateGraphics();
+            }
+        }
+
+        private void CreateGraphics()
+        {
+            if (!_weapon)
+            {
+                return;
+            }
+
+            var instance = Instantiate(_weapon.WeaponGraphics, transform);
+            _activeWeaponGraphics = instance;
+        }
+
+        private void ClearGraphics()
+        {
+            if (!_activeWeaponGraphics)
+            {
+                return;
+            }
+            Destroy(_activeWeaponGraphics.gameObject);
+            _activeWeaponGraphics = null;
+        }
+
         private IObjectPool<GameObject> _projectilePool;
 
         private void Awake()
@@ -55,6 +100,11 @@ namespace GFA.TPS
         */
         public void Shoot()
         {
+            if (!_weapon)
+            {
+                return;
+            }
+
             if (!CanShoot)
             {
                 return;

@@ -33,5 +33,10 @@ namespace GFA.TPS.WeaponSystem
 
         public GameObject ProjectilePrefab => _projectilePrefab;
 
+        [SerializeField]
+        private WeaponGraphics _weaponGraphics;
+
+        public WeaponGraphics WeaponGraphics => _weaponGraphics;
+
     }
 }
