@@ -44,7 +44,7 @@ namespace GFA.TPS
             }
             _weapon = weapon;
 
-            if (!_weapon)
+            if (_weapon)
             {
                 CreateGraphics();
             }

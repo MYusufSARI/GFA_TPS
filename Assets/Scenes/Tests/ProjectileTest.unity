@@ -866,7 +866,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _weapon
       value: 
-      objectReference: {fileID: 11400000, guid: 22dbb097f95f74e3c8db64a96f978869,
+      objectReference: {fileID: 11400000, guid: 849a04b9df1a6425c83aae69cb4942ae,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
