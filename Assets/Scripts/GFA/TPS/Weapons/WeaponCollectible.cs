@@ -10,7 +10,7 @@ namespace GFA.TPS.WeaponSystem
     {
         [SerializeField]
         private Weapon _weapon;
-
+         
         private void Start()
         {
            var inst =  Instantiate(_weapon.WeaponGraphics, transform);
