@@ -24,6 +24,8 @@ namespace GFA.TPS.MatchSystem
 
         private int _currentSpawnedObjectIndex;
 
+        
+
         private void Awake()
         {
             _camera = Camera.main;
