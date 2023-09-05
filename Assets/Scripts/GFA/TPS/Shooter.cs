@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GFA.TPS.Movement;
 using GFA.TPS.WeaponSystem;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -27,6 +28,52 @@ namespace GFA.TPS
 
         [SerializeField]
         private Transform _weaponContainer;
+
+        private IObjectPool<GameObject> _projectilePool;
+
+        private void Awake()
+        {
+            _projectilePool = new ObjectPool<GameObject>(CreatePoolProjectile, OnGetPoolProjectile, OnReleasePoolObject, OnDestroyFromPool, true, 40);
+        }
+
+        private GameObject CreatePoolProjectile()
+        {
+            var projectileToInstantiate = _defaulProjectilePrefab;
+
+            if (_weapon.ProjectilePrefab)
+            {
+                projectileToInstantiate = _weapon.ProjectilePrefab;
+            }
+
+            var inst = Instantiate(projectileToInstantiate, _activeWeaponGraphics.ShootTransform.position, _activeWeaponGraphics.ShootTransform.rotation);
+
+            if (inst.TryGetComponent<ProjectileMovement>(out var projectileMovement))
+            {
+                projectileMovement.DestroyRequested += () => { _projectilePool.Release(inst); };
+            }
+            return inst;
+        }
+
+        private void OnDestroyFromPool(GameObject obj)
+        {
+            Destroy(obj);
+        }
+
+        private void OnReleasePoolObject(GameObject obj)
+        {
+            obj.SetActive(false);
+        }
+
+        private void OnGetPoolProjectile(GameObject obj)
+        {
+            obj.SetActive(true);
+            if (obj.TryGetComponent<ProjectileMovement>(out var movement))
+            {
+                movement.ResetSpawnTime();
+            }
+
+        }
+
 
         private void Start()
         {
@@ -72,33 +119,7 @@ namespace GFA.TPS
             _activeWeaponGraphics = null;
         }
 
-        private IObjectPool<GameObject> _projectilePool;
 
-        private void Awake()
-        {
-            //      _projectilePool = new ObjectPool<GameObject>(CreatePoolProjectile , OnGetPoolProjectile , OnReleasePoolObject , OnDestroyFromPool , true , 40);
-        }
-
-        private void OnDestroyFromPool(GameObject @object)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnReleasePoolObject(GameObject @object)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnGetPoolProjectile(GameObject @object)
-        {
-            throw new NotImplementedException();
-        }
-        /*
-        private GameObject CreatePoolProjectile()
-        {
-            
-        }
-        */
         public void Shoot()
         {
             if (!_weapon)
@@ -111,20 +132,16 @@ namespace GFA.TPS
                 return;
             }
 
-            var projectileToInstantiate = _defaulProjectilePrefab;
+            var inst = _projectilePool.Get();
+            inst.transform.position = _activeWeaponGraphics.ShootTransform.position;
+            inst.transform.rotation = _activeWeaponGraphics.ShootTransform.rotation;
 
-            if (_weapon.ProjectilePrefab)
-            {
-                projectileToInstantiate = _weapon.ProjectilePrefab;
-            }
-
-            var inst = Instantiate(projectileToInstantiate, _activeWeaponGraphics.ShootTransform.position, _activeWeaponGraphics.ShootTransform.rotation);
             if (inst.TryGetComponent<ProjectileDamage>(out var projectileDamage))
             {
                 projectileDamage.Damage = _weapon.BaseDamage;
             }
             var rand = Random.value;
-            var maxAngle = 15- 15* Mathf.Max(_weapon.Accuracy - _recoilValue - 0);
+            var maxAngle = 15 - 15 * Mathf.Max(_weapon.Accuracy - _recoilValue - 0);
             //var minAngle = 60 - 60 * _accuracy;
             var randomAngle = Mathf.Lerp(-maxAngle, maxAngle, rand);
 

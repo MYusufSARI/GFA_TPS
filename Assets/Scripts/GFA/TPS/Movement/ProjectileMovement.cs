@@ -45,14 +45,37 @@ namespace GFA.TPS.Movement
             set => _shouldBounce = value;
         }
 
-        public event Action<RaycastHit> Impacted;
-
         [SerializeField]
         private float _pushPower;
+
+        [SerializeField]
+        private float _lifeTime;
+
+        private float _spawnTime;
+
+        private void Awake()
+        {
+            ResetSpawnTime();
+        }
+
+        public void ResetSpawnTime()
+        {
+            _spawnTime = Time.time;
+        }
+
+        public event Action<RaycastHit> Impacted;
+        public event Action DestroyRequested;
 
 
         private void Update()
         {
+            if (_lifeTime >0 && Time.time - _spawnTime > _lifeTime)
+            {
+                DestroyRequested?.Invoke();
+
+                return;
+            }
+
             var direction = transform.forward;
 
             direction.x *= _movementPlane.x;
@@ -75,6 +98,8 @@ namespace GFA.TPS.Movement
 
                 if (ShouldDestroyOnColision)
                 {
+                    DestroyRequested?.Invoke();
+
                     Destroy(gameObject);
                 }
 
@@ -83,13 +108,13 @@ namespace GFA.TPS.Movement
                     enabled = false;
                 }
 
-                targetPosition = hit.point + transform.forward * 0.01f ;
+                targetPosition = hit.point + transform.forward * 0.01f;
 
 
                 if (ShouldBounce)
                 {
                     var reflectedDirection = Vector3.Reflect(direction, hit.normal);
-                    transform.forward = reflectedDirection; 
+                    transform.forward = reflectedDirection;
                 }
                 Impacted?.Invoke(hit);
 
