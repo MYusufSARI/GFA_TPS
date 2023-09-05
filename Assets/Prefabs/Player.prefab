@@ -103,10 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c12ea561f22d4938b58dcc1d24c381d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 0}
-  _defaulProjectilePrefab: {fileID: 4832670006524959613, guid: aadcbebd8332a4b37930b884f655dbd5,
+  _weapon: {fileID: 11400000, guid: 849a04b9df1a6425c83aae69cb4942ae, type: 2}
+  _defaultProjectilePrefab: {fileID: 4832670006524959613, guid: aadcbebd8332a4b37930b884f655dbd5,
     type: 3}
-  _shootTransform: {fileID: 6166961450613045387}
   _weaponContainer: {fileID: 5214188849529424473}
 --- !u!1 &1496728065301632743
 GameObject:

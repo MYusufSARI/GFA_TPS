@@ -22,7 +22,7 @@ namespace GFA.TPS
         public bool CanShoot => Time.time > _lastShootTime + _weapon.FireRate;
 
         [SerializeField]
-        private GameObject _defaulProjectilePrefab;
+        private GameObject _defaultProjectilePrefab;
 
         private WeaponGraphics _activeWeaponGraphics;
 
@@ -38,7 +38,7 @@ namespace GFA.TPS
 
         private GameObject CreatePoolProjectile()
         {
-            var projectileToInstantiate = _defaulProjectilePrefab;
+            var projectileToInstantiate = _defaultProjectilePrefab;
 
             if (_weapon.ProjectilePrefab)
             {
@@ -51,6 +51,7 @@ namespace GFA.TPS
             {
                 projectileMovement.DestroyRequested += () => { _projectilePool.Release(inst); };
             }
+
             return inst;
         }
 
@@ -61,7 +62,10 @@ namespace GFA.TPS
 
         private void OnReleasePoolObject(GameObject obj)
         {
-            obj.SetActive(false);
+            if (obj.TryGetComponent<ProjectileMovement>(out var movement))
+            {
+                movement.enabled = false;
+            }
         }
 
         private void OnGetPoolProjectile(GameObject obj)
@@ -69,11 +73,19 @@ namespace GFA.TPS
             obj.SetActive(true);
             if (obj.TryGetComponent<ProjectileMovement>(out var movement))
             {
+                movement.enabled = true;
+
                 movement.ResetSpawnTime();
             }
-
         }
 
+        private IEnumerator ClearTrailRenderedDelayed(TrailRenderer trail)
+        {
+            trail.emitting = false;
+            yield return new WaitForEndOfFrame();
+            trail.Clear();
+            trail.emitting = true;
+        }
 
         private void Start()
         {
@@ -136,6 +148,13 @@ namespace GFA.TPS
             inst.transform.position = _activeWeaponGraphics.ShootTransform.position;
             inst.transform.rotation = _activeWeaponGraphics.ShootTransform.rotation;
 
+            var trail = inst.GetComponentInChildren<TrailRenderer>();
+            if (trail)
+            {
+                trail.Clear();
+                //StartCoroutine(ClearTrailRenderedDelayed(trail));
+
+            }
             if (inst.TryGetComponent<ProjectileDamage>(out var projectileDamage))
             {
                 projectileDamage.Damage = _weapon.BaseDamage;

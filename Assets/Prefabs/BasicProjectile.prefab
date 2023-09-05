@@ -50,8 +50,8 @@ MonoBehaviour:
   _movementPlane: {x: 1, y: 0, z: 1}
   _shouldDisableOnCollision: 0
   _shouldDestroyOnCollision: 1
-  _shouldBounce: 0
-  _pushPower: 0.001
+  _shouldBounce: 1
+  _pushPower: 0.01
   _lifeTime: 5
 --- !u!114 &1006528449087249588
 MonoBehaviour:
