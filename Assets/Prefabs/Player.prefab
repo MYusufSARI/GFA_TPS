@@ -35,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 6166961450613045387}
   - {fileID: 8571358536239096758}
-  - {fileID: 3837833851232787086}
   - {fileID: 5214188849529424473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 1496728065301632743}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.049999893, y: 1.41, z: 1.1520002}
+  m_LocalPosition: {x: 0, y: 1.25, z: 1.25}
   m_LocalScale: {x: 1, y: 0.14973, z: 0.11596006}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -252,49 +251,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2274418737371335540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5817159633881516355
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3837833851232787086}
-  - component: {fileID: 6058044354664255790}
-  m_Layer: 0
-  m_Name: ShooterTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &3837833851232787086
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5817159633881516355}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.053, y: 1.396, z: 1.033}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2274418737371335540}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6058044354664255790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5817159633881516355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485be52eb046f43cdaebe3ab6f3510d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 4832670006524959613, guid: aadcbebd8332a4b37930b884f655dbd5,
-    type: 3}
