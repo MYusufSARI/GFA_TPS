@@ -98,6 +98,7 @@ namespace GFA.TPS.MatchSystem
                 }
             }
         }
+        
 
         private Vector3 GetViewportPoint(out Vector3 offset)
         {

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace GFA.TPS.Movement
 {
-
     public class ProjectileMovement : MonoBehaviour
     {
         [SerializeField]
@@ -20,20 +19,19 @@ namespace GFA.TPS.Movement
         private Vector3 _movementPlane = Vector3.one;
 
         [SerializeField]
-        private bool _shouldDisableOnCollision;
-        public bool ShouldDisableOnColision
-        {
-            get => _shouldDisableOnCollision;
-            set => _shouldDisableOnCollision = value;
-        }
-
-
-        [SerializeField]
         private bool _shouldDestroyOnCollision;
-        public bool ShouldDestroyOnColision
+        public bool ShouldDestroyOnCollision
         {
             get => _shouldDestroyOnCollision;
             set => _shouldDestroyOnCollision = value;
+        }
+
+        [SerializeField]
+        private bool _shouldDisableOnCollision;
+        public bool ShouldDisableOnCollision
+        {
+            get => _shouldDisableOnCollision;
+            set => _shouldDisableOnCollision = value;
         }
 
 
@@ -49,9 +47,9 @@ namespace GFA.TPS.Movement
         private float _pushPower;
 
         [SerializeField]
-        private float _lifeTime;
-
+        private float _lifetime;
         private float _spawnTime;
+
 
         private void Awake()
         {
@@ -66,18 +64,15 @@ namespace GFA.TPS.Movement
         public event Action<RaycastHit> Impacted;
         public event Action DestroyRequested;
 
-
         private void Update()
         {
-            if (_lifeTime >0 && Time.time - _spawnTime > _lifeTime)
+            if (_lifetime > 0 && Time.time - _spawnTime > _lifetime)
             {
                 DestroyRequested?.Invoke();
-
                 return;
             }
 
             var direction = transform.forward;
-
             direction.x *= _movementPlane.x;
             direction.y *= _movementPlane.y;
             direction.z *= _movementPlane.z;
@@ -85,9 +80,7 @@ namespace GFA.TPS.Movement
             direction.Normalize();
 
             var distance = _speed * Time.deltaTime;
-
             var targetPosition = transform.position + direction * distance;
-
 
             if (Physics.Raycast(transform.position, direction, out var hit, distance))
             {
@@ -96,14 +89,13 @@ namespace GFA.TPS.Movement
                     hit.rigidbody.AddForceAtPosition(-hit.normal * _speed * _pushPower, hit.point, ForceMode.Impulse);
                 }
 
-                if (ShouldDestroyOnColision)
+                if (ShouldDestroyOnCollision)
                 {
                     DestroyRequested?.Invoke();
-
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                 }
 
-                if (ShouldDisableOnColision)
+                if (ShouldDisableOnCollision)
                 {
                     enabled = false;
                 }
@@ -116,16 +108,14 @@ namespace GFA.TPS.Movement
                     var reflectedDirection = Vector3.Reflect(direction, hit.normal);
                     transform.forward = reflectedDirection;
                 }
-                Impacted?.Invoke(hit);
 
+                Impacted?.Invoke(hit);
             }
 
+
             Debug.DrawLine(transform.position, targetPosition, Color.red);
-
             transform.position = targetPosition;
-
             Debug.DrawRay(transform.position, direction * distance, Color.blue);
-
         }
     }
 }
