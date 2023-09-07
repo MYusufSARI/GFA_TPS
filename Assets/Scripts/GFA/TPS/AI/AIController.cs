@@ -34,7 +34,7 @@ namespace GFA.TPS.AI
         {
             if (AIBehaviour)
             {
-                AIBehaviour.Update(this);
+                AIBehaviour.OnUpdate(this);
             }
         }
     }

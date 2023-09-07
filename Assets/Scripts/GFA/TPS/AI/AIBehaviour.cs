@@ -7,7 +7,7 @@ namespace GFA.TPS.AI
     {
         public abstract void Begin(AIController controller);
 
-        public void Update(AIController controller)
+        public void OnUpdate(AIController controller)
         {
             Profiler.BeginSample("AI Behaviour: " + name);
             Execute(controller);
