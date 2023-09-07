@@ -9,7 +9,7 @@ namespace GFA.TPS.AI
     public class BasicAIState : AIState
     {
         public CharacterMovement CharacterMovement { get; set; }
-
+        public EnemyAttacker Attacker { get; set; }
     }
 
     public class BossAIState : AIState

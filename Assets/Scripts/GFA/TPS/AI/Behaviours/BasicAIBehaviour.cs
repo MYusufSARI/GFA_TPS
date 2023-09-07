@@ -12,13 +12,14 @@ namespace GFA.TPS.AI.Behaviours
         private float _acceptanceRadius;
 
         [SerializeField]
-        private MatchInstance _matchInstance;
+        private MatchInstance? _matchInstance;
 
         public override void Begin(AIController controller)
         {
             if (controller.TryGetState<BasicAIState>(out var state))
             {
                 state.CharacterMovement = controller.GetComponent<CharacterMovement>();
+                state.Attacker = controller.GetComponent<EnemyAttacker>();
             }
         }
 

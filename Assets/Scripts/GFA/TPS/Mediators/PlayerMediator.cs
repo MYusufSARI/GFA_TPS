@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 namespace GFA.TPS.Mediators
 {
-    public class PlayerMediator : MonoBehaviour
+    public class PlayerMediator : MonoBehaviour , IDamagable
     {
         private CharacterMovement _characterMovement;
 
@@ -22,6 +22,9 @@ namespace GFA.TPS.Mediators
         private Plane _plane = new Plane(Vector3.up, Vector3.zero);
 
         private Camera _camera;
+
+        [SerializeField]
+        private float _health;
 
         private void Awake()
         {
@@ -96,6 +99,11 @@ namespace GFA.TPS.Mediators
                     _characterMovement.Rotation = angle;
                 }
             }
+        }
+
+        public void ApplyDamage(float damage, GameObject causer = null)
+        {
+            _health -= damage;
         }
     }
 }

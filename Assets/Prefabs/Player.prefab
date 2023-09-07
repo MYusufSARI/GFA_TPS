@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dodgePower: 10
+  _health: 10
 --- !u!114 &7037682333824918184
 MonoBehaviour:
   m_ObjectHideFlags: 0
