@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2442e78e968a04665beb3c649674deca, type: 3}
   m_Name: BasicAIBehaviour_Ranged
   m_EditorClassIdentifier: 
-  _acceptanceRadius: 0
-  _matchInstance: {fileID: 0}
+  _acceptanceRadius: 5
+  _matchInstance: {fileID: 11400000, guid: 579425078538d4aadbcee49817c0d033, type: 2}

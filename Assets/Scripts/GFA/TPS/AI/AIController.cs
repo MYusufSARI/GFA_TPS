@@ -20,14 +20,21 @@ namespace GFA.TPS.AI
 
                 if (_aiBehaviour)
                 {
+                    _aiState = _aiBehaviour.CreateState();
                     _aiBehaviour.Begin(this);
                 }
             }
         }
 
+        private AIState _aiState;
+
         private void Awake()
         {
-            if (_aiBehaviour) _aiBehaviour.Begin(this);
+            if (_aiBehaviour)
+            {
+                _aiBehaviour = Instantiate(_aiBehaviour);
+                _aiBehaviour.Begin(this);
+            }
         }
 
         private void Update()
@@ -35,6 +42,21 @@ namespace GFA.TPS.AI
             if (AIBehaviour)
             {
                 AIBehaviour.OnUpdate(this);
+            }
+        }
+
+        public bool TryGetState<T>(out T state) where T : AIState
+        {
+
+            if (_aiState is T casted)
+            {
+                state = casted;
+                return true;
+            }
+            else
+            {
+                state = null;
+                return false;
             }
         }
     }

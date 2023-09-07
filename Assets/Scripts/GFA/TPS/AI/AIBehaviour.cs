@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -16,5 +17,10 @@ namespace GFA.TPS.AI
         public abstract void End(AIController controller);
 
         protected abstract void Execute(AIController controller);
+
+        public virtual AIState CreateState()
+        {
+            return null;
+        }
     }
 }

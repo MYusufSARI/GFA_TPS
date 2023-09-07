@@ -52,7 +52,7 @@ MonoBehaviour:
   _shouldDisableOnCollision: 0
   _shouldBounce: 1
   _pushPower: 0.01
-  _lifetime: 5
+  _lifetime: 2
 --- !u!114 &1006528449087249588
 MonoBehaviour:
   m_ObjectHideFlags: 0
