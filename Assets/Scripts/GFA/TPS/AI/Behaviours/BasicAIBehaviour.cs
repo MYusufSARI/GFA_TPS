@@ -13,9 +13,11 @@ namespace GFA.TPS.AI.Behaviours
 
         [SerializeField]
         private MatchInstance _matchInstance;
+        private CharacterMovement _movement;
 
         public override void Begin(AIController controller)
         {
+            _movement = controller.GetComponent<CharacterMovement>();
 
         }
 
@@ -23,19 +25,18 @@ namespace GFA.TPS.AI.Behaviours
         {
             var player = _matchInstance.Player;
 
-            var movement = controller.GetComponent<CharacterMovement>();
 
             var dist = Vector3.Distance(player.transform.position, controller.transform.position);
 
             if (dist<_acceptanceRadius)
             {
-                movement.MovementInput = Vector3.zero;
+                _movement.MovementInput = Vector3.zero;
             }
 
             else 
             {
                 var dir = (player.transform.position - controller.transform.position).normalized;
-                movement.MovementInput = new Vector2(dir.x, dir.z);
+                _movement.MovementInput = new Vector2(dir.x, dir.z);
             }
         }
 

@@ -16,7 +16,7 @@ namespace GFA.TPS.AI
                     _aiBehaviour.End(this);
                 }
 
-                _aiBehaviour = value;
+                _aiBehaviour = Instantiate(value);
 
                 if (_aiBehaviour)
                 {
