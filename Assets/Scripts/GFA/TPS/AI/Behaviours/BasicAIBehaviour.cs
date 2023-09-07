@@ -2,7 +2,7 @@ using DG.Tweening;
 using GFA.TPS.MatchSystem;
 using GFA.TPS.Movement;
 using UnityEngine;
-/*
+
 namespace GFA.TPS.AI.Behaviours
 {
     [CreateAssetMenu(menuName = "AI/Basic AI Behaviour")]
@@ -16,6 +16,7 @@ namespace GFA.TPS.AI.Behaviours
 
         public override void Begin(AIController controller)
         {
+
         }
 
         protected override void Execute(AIController controller)
@@ -35,4 +36,4 @@ namespace GFA.TPS.AI.Behaviours
         }
     }
 }
-*/
+
