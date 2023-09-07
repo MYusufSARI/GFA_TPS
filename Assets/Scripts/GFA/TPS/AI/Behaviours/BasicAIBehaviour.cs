@@ -25,10 +25,18 @@ namespace GFA.TPS.AI.Behaviours
 
             var movement = controller.GetComponent<CharacterMovement>();
 
-            //var dist = Vector3.Distance(player.transform.position, )
-            var dir = (player.transform.position - controller.transform.position).normalized;
+            var dist = Vector3.Distance(player.transform.position, controller.transform.position);
 
-            movement.MovementInput = new Vector2(dir.x, dir.z);
+            if (dist<_acceptanceRadius)
+            {
+                movement.MovementInput = Vector3.zero;
+            }
+
+            else 
+            {
+                var dir = (player.transform.position - controller.transform.position).normalized;
+                movement.MovementInput = new Vector2(dir.x, dir.z);
+            }
         }
 
         public override void End(AIController controller)

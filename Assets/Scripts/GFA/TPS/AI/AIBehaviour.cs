@@ -13,7 +13,6 @@ namespace GFA.TPS.AI
             Execute(controller);
             Profiler.EndSample();
         }
-        
         public abstract void End(AIController controller);
 
         protected abstract void Execute(AIController controller);
