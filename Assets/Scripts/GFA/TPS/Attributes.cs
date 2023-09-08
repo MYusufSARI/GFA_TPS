@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GFA.TPS
 {
     [System.Serializable]
-    public class Attributes : MonoBehaviour
+    public class Attributes
     {
         public float Damage = 0;
         public float MovementSpeed = 5;

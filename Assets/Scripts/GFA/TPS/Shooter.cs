@@ -20,6 +20,7 @@ namespace GFA.TPS
         public bool CanShoot => Time.time > _lastShootTime + (_weapon.FireRate / AttackSpeedMultipler);
 
         public float AttackSpeedMultipler { get; set; } = 1;
+
         public float BaseDamage { get; set; }
 
         [SerializeField]
