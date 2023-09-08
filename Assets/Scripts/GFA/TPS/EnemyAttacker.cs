@@ -14,12 +14,16 @@ namespace GFA.TPS
         [SerializeField]
         private float _range;
 
+        public float Range => _range;
+
         [SerializeField]
         private float _attackRate;
 
         private float _lastAttack;
 
-        public bool CanAttack => _lastAttack + _attackRate > Time.time;
+        public bool CanAttack =>Time.time > _lastAttack + _attackRate;
+
+        public bool IsCurrentlyAttacking { get; private set; }
 
         public void Attack(IDamagable target)
         {
@@ -34,7 +38,10 @@ namespace GFA.TPS
 
         private IEnumerator ApplyAttackDelayed(IDamagable target)
         {
+            IsCurrentlyAttacking = true;
             yield return new WaitForSeconds(0.5f);
+            IsCurrentlyAttacking = false;
+
             if (target is MonoBehaviour mb)
             {
                 if (Vector3.Distance(mb.transform.position, transform.position) < _range)

@@ -20,6 +20,7 @@ namespace GFA.TPS.AI.Behaviours
             {
                 state.CharacterMovement = controller.GetComponent<CharacterMovement>();
                 state.Attacker = controller.GetComponent<EnemyAttacker>();
+                state.PlayerDamagable = _matchInstance.Player.GetComponent<IDamagable>();
             }
         }
 
@@ -36,15 +37,16 @@ namespace GFA.TPS.AI.Behaviours
 
             var dist = Vector3.Distance(player.transform.position, controller.transform.position);
 
-            if (dist < _acceptanceRadius)
-            {
-                movement.MovementInput = Vector3.zero;
-            }
-
-            else
+            if (dist < _acceptanceRadius || !state.Attacker.IsCurrentlyAttacking)
             {
                 var dir = (player.transform.position - controller.transform.position).normalized;
                 movement.MovementInput = new Vector2(dir.x, dir.z);
+            }
+
+
+            if (dist < state.Attacker.Range)
+            {
+                state.Attacker.Attack(state.PlayerDamagable);
             }
         }
 
