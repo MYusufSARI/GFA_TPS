@@ -17,6 +17,13 @@ namespace GFA.TPS.Movement
         [SerializeField]
         private float _movementSpeed = 4;
 
+        public float MovementSpeed
+        {
+            get => _movementSpeed;
+
+            set => _movementSpeed = value;
+        }
+
         public float Rotation { get; set; }
 
         public Vector3 Velocity => _characterController.velocity;

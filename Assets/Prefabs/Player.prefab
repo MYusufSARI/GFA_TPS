@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5363617954985290540}
   - component: {fileID: 6518382038963803295}
   - component: {fileID: 7037682333824918184}
+  - component: {fileID: 3305161678867359882}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -107,6 +108,23 @@ MonoBehaviour:
   _defaultProjectilePrefab: {fileID: 4832670006524959613, guid: aadcbebd8332a4b37930b884f655dbd5,
     type: 3}
   _weaponContainer: {fileID: 5214188849529424473}
+--- !u!114 &3305161678867359882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613843525737516774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ae6cf4ea607441588e3bb80ff70cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tickInterval: 0.5
+  _attractionRadius: 5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1496728065301632743
 GameObject:
   m_ObjectHideFlags: 0
