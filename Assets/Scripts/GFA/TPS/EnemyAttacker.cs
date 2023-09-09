@@ -27,6 +27,10 @@ namespace GFA.TPS
 
         public event Action<IDamagable> Attacked;
 
+        private IDamagable _currentTarget;
+
+
+
         public void Attack(IDamagable target)
         {
             if (!CanAttack == false)
@@ -36,6 +40,12 @@ namespace GFA.TPS
             _lastAttack = Time.time;
             Attacked?.Invoke(target);
             StartCoroutine(ApplyAttackDelayed(target));
+        }
+
+
+        public void ExecuteDamage()
+        {
+
         }
 
 
