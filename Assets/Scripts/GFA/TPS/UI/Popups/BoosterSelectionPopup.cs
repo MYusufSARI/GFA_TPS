@@ -21,7 +21,7 @@ namespace GFA.TPS.UI.Popups
         {
             base.OnOpened();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 var randomBooster = _boosterList.Get(Random.Range(0, _boosterList.Length));
                 var inst = Instantiate(_boosterCardPrefab, _container);
