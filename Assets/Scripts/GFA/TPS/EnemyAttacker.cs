@@ -25,6 +25,8 @@ namespace GFA.TPS
 
         public bool IsCurrentlyAttacking { get; private set; }
 
+        public event Action<IDamagable> Attacked;
+
         public void Attack(IDamagable target)
         {
             if (!CanAttack == false)
@@ -32,6 +34,7 @@ namespace GFA.TPS
                 return;
             }
             _lastAttack = Time.time;
+            Attacked?.Invoke(target);
             StartCoroutine(ApplyAttackDelayed(target));
         }
 
