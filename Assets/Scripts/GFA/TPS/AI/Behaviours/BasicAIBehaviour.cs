@@ -47,7 +47,8 @@ namespace GFA.TPS.AI.Behaviours
                 movement.MovementInput = new Vector2(dir.x, dir.z);
                 
             }
-            controller.transform.rotation = Quaternion.LookRotation(dir).normalized;
+            var rotation =  Quaternion.LookRotation(dir).normalized;
+            movement.Rotation = rotation.eulerAngles.y; 
 
             if (dist < state.Attacker.Range)
             {
