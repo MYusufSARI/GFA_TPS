@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using GFA.TPS.UI;
 using GFA.TPS.UI.Popups;
+using GFA.TPS.BoosterSystem;
 
 namespace GFA.TPS.Mediators
 {
@@ -25,6 +26,8 @@ namespace GFA.TPS.Mediators
         private Shooter _shooter;
 
         private XPCollectibleAttractor _xPCollectibleAttractor;
+
+        private BoosterContainer _boosterContainer;
 
         [SerializeField] private float _dodgePower;
 
@@ -52,6 +55,8 @@ namespace GFA.TPS.Mediators
             _shooter = GetComponent<Shooter>();
 
             _xPCollectibleAttractor = GetComponent<XPCollectibleAttractor>();
+
+            _boosterContainer = GetComponent<BoosterContainer>();
 
             _gameInput = new GameInput();
 
@@ -92,8 +97,15 @@ namespace GFA.TPS.Mediators
         {
             _level++;
             _xp = 0;
-            PopupChannel.RequestPopup<BoosterSelectionPopup>();
+
+            if (PopupChannel.TryGetPopup<BoosterSelectionPopup>(out var popup))
+            {
+                popup.TargetBoosterContainer = _boosterContainer;
+                popup.Open();
+            }
+
             LevelledUp?.Invoke(_level);
+
         }
 
 

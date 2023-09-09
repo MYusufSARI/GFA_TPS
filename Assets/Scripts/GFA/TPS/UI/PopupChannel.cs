@@ -82,6 +82,7 @@ namespace GFA.TPS.UI
             if (_popups.Contains(popup))
             {
                 _popups.Add(popup);
+                
             }
         }
 

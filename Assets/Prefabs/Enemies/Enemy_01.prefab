@@ -214,6 +214,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xp: 1
-  _xpDropChange: 1
+  _xpDropChange: 0.7
   _xpCollectiblePrefab: {fileID: 6335223945036527739, guid: a867ee796bcd24d318635a3d2543233c,
+    type: 3}
+  _weaponDropChances:
+  - Chance: 0.1
+    Weapon: {fileID: 11400000, guid: e00da99a1a11f483f8ead886af9b8bf5, type: 2}
+  - Chance: 0.05
+    Weapon: {fileID: 11400000, guid: 055ed7c2aff584922aeaaab82acd71cf, type: 2}
+  _weaponColletiblePrefab: {fileID: 455073690327155517, guid: 5633047602eae458589ad499392745eb,
     type: 3}

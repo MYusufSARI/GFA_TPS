@@ -15,6 +15,8 @@ namespace GFA.TPS.UI.Popups
         [SerializeField]
         private Transform _container;
 
+        public BoosterContainer TargetBoosterContainer { get; set; }
+
         /*
         protected void Start()
         {
@@ -23,13 +25,23 @@ namespace GFA.TPS.UI.Popups
         */
         protected override void OnOpened()
         {
-            base.OnOpened();
+            Time.timeScale = 0;
+
+            foreach (Transform c in _container)
+            {
+                Destroy(c.gameObject);
+            }
 
             for (int i = 0; i < 3; i++)
             {
                 var randomBooster = _boosterList.Get(Random.Range(0, _boosterList.Length));
                 var inst = Instantiate(_boosterCardPrefab, _container);
                 inst.Booster = randomBooster;
+                inst.Clicked += () =>
+                {
+                    TargetBoosterContainer.AddBooster(inst.Booster);
+                    Close();
+                };
             }
         }
 
