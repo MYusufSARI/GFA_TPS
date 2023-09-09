@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7627284807451872122}
   - component: {fileID: -2082076131811143110}
   - component: {fileID: -3102583776266672881}
+  - component: {fileID: 465557553578142059}
   m_Layer: 6
   m_Name: Enemy_03
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MonoBehaviour:
   _damage: 0.5
   _range: 2
   _attackRate: 1
+--- !u!114 &465557553578142059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247036298793820269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb303d9c721947f08a4a58dc7beb835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &1838189954660635268
 GameObject:
   m_ObjectHideFlags: 0
