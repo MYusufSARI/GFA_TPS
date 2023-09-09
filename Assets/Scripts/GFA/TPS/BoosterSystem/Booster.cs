@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GFA.TPS.BoosterSystem
 {
-    public abstract class Booster : MonoBehaviour
+    public abstract class Booster : ScriptableObject
     {
         [SerializeField]
         private string _boosterName;

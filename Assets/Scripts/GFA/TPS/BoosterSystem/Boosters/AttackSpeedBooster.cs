@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using GFA.TPS.Mediators;
 using UnityEngine;
 
 namespace GFA.TPS.BoosterSystem.Boosters
 {
+
     [CreateAssetMenu(menuName = "Boosters/Attack Speed")]
     public class AttackSpeedBooster : Booster
     {
@@ -13,7 +12,7 @@ namespace GFA.TPS.BoosterSystem.Boosters
 
         public override void OnAdded(BoosterContainer container)
         {
-            if (container.TryGetComponent<PlayerMediator>(out var mediator))
+            if (container.TryGetComponent(out PlayerMediator mediator))
             {
                 mediator.Attributes.AttackSpeed += _value;
             }

@@ -153,7 +153,7 @@ namespace GFA.TPS.Mediators
 
         public void ApplyDamage(float damage, GameObject causer = null)
         {
-            _health -= damage;
+            _health -= damage * (1-Attributes.Defence);
         }
     }
 }

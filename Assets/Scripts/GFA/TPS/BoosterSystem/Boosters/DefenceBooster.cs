@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using GFA.TPS.Mediators;
 using UnityEngine;
 
 namespace GFA.TPS.BoosterSystem.Boosters
 {
-    [CreateAssetMenu(menuName = "Defence")]
+    [CreateAssetMenu(menuName ="Boosters/Defence")]
 
     public class DefenceBooster : Booster
     {
