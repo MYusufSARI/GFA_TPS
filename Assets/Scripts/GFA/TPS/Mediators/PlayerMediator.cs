@@ -6,6 +6,8 @@ using GFA.TPS.Movement;
 using GFA.TPS;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using GFA.TPS.UI;
+using GFA.TPS.UI.Popups;
 
 namespace GFA.TPS.Mediators
 {
@@ -82,10 +84,16 @@ namespace GFA.TPS.Mediators
             _xp += value;
             if (_xp >= MaxHP)
             {
-                _level++;
-                _xp = 0;
-                LevelledUp?.Invoke(_level);
+                LevelUp();
             }
+        }
+
+        private void LevelUp()
+        {
+            _level++;
+            _xp = 0;
+            PopupChannel.RequestPopup<BoosterSelectionPopup>();
+            LevelledUp?.Invoke(_level);
         }
 
 
@@ -153,7 +161,7 @@ namespace GFA.TPS.Mediators
 
         public void ApplyDamage(float damage, GameObject causer = null)
         {
-            _health -= damage * (1-Attributes.Defence);
+            _health -= damage * (1 - Attributes.Defence);
         }
     }
 }
