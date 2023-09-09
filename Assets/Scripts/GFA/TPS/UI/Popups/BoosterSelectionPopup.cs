@@ -15,8 +15,12 @@ namespace GFA.TPS.UI.Popups
         [SerializeField]
         private Transform _container;
 
-        
-
+        /*
+        protected void Start()
+        {
+            Open();
+        }
+        */
         protected override void OnOpened()
         {
             base.OnOpened();
@@ -28,5 +32,12 @@ namespace GFA.TPS.UI.Popups
                 inst.Booster = randomBooster;
             }
         }
+
+        protected override void OnClosed()
+        {
+            Time.timeScale = 1;
+        }
     }
+
+
 }
