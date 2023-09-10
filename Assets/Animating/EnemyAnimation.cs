@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GFA.TPS.Animating
@@ -12,15 +10,14 @@ namespace GFA.TPS.Animating
         private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int IsDead = Animator.StringToHash("IsDead");
 
-
         public void PlayAttackAnimation()
         {
-            _animator.SetTrigger("Attack");
+            _animator.SetTrigger(Attack);
         }
 
         public void PlayDeathAnimation()
         {
-            _animator.SetBool("IsDead", true);
+            _animator.SetBool(IsDead, true);
         }
     }
 }

@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5254272210372003476}
   - component: {fileID: 6335223945036527739}
-  - component: {fileID: 1922042493756537974}
+  - component: {fileID: 6162636703364922734}
   m_Layer: 7
   m_Name: XPCollectible
   m_TagString: Untagged
@@ -133,7 +133,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.85, y: 0.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2488811602276754495}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42a5007ee4bd4d82b84abb30a5cf9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1922042493756537974
+--- !u!65 &6162636703364922734
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

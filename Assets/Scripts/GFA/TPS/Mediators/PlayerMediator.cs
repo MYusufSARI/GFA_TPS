@@ -25,7 +25,7 @@ namespace GFA.TPS.Mediators
 
         private Shooter _shooter;
 
-        private XPCollectibleAttractor _xPCollectibleAttractor;
+        private XPCollectableAttractor _xPCollectibleAttractor;
 
         private BoosterContainer _boosterContainer;
 
@@ -54,7 +54,7 @@ namespace GFA.TPS.Mediators
 
             _shooter = GetComponent<Shooter>();
 
-            _xPCollectibleAttractor = GetComponent<XPCollectibleAttractor>();
+            _xPCollectibleAttractor = GetComponent<XPCollectableAttractor>();
 
             _boosterContainer = GetComponent<BoosterContainer>();
 

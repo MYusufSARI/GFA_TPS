@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System;
+using System.Collections;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GFA.TPS
 {
-
     public class EnemyAttacker : MonoBehaviour, IDamageExecutor
     {
         [SerializeField]
@@ -14,14 +13,12 @@ namespace GFA.TPS
 
         [SerializeField]
         private float _range;
-
         public float Range => _range;
 
         [SerializeField]
         private float _attackRate;
 
         private float _lastAttack;
-
         public bool CanAttack => Time.time > _lastAttack + _attackRate;
 
         public bool IsCurrentlyAttacking { get; private set; }
@@ -30,24 +27,19 @@ namespace GFA.TPS
 
         private IDamagable _currentTarget;
 
-
-
         public void Attack(IDamagable target)
         {
-            if (!CanAttack == false)
-            {
-                return;
-            }
+            if (!CanAttack) return;
             _lastAttack = Time.time;
             Attacked?.Invoke(target);
             _currentTarget = target;
             IsCurrentlyAttacking = true;
         }
 
-
         public void ExecuteDamage()
         {
             if (_currentTarget == null) return;
+
             if (_currentTarget is MonoBehaviour mb)
             {
                 if (Vector3.Distance(mb.transform.position, transform.position) < _range)
@@ -62,7 +54,5 @@ namespace GFA.TPS
 
             IsCurrentlyAttacking = false;
         }
-
-
     }
 }
